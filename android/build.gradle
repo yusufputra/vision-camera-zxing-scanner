@@ -5,7 +5,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.5.3'
+    classpath 'com.android.tools.build:gradle:4.2.1'
   }
 }
 
@@ -126,6 +126,9 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
 // From node_modules
+  api project(':react-native-vision-camera')
+  implementation "androidx.camera:camera-core:1.1.0-alpha06"
+  implementation 'com.google.zxing:core:3.5.1'
 }
 
 if (isNewArchitectureEnabled()) {

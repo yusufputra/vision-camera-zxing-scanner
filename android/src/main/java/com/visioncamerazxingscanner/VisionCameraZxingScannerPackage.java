@@ -6,6 +6,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
+import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,9 +16,8 @@ public class VisionCameraZxingScannerPackage implements ReactPackage {
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
-        List<NativeModule> modules = new ArrayList<>();
-        modules.add(new VisionCameraZxingScannerModule(reactContext));
-        return modules;
+        FrameProcessorPlugin.register(new VisionCameraZxingScannerModule());
+        return Collections.emptyList();
     }
 
     @NonNull

@@ -1,19 +1,35 @@
 # vision-camera-zxing-scanner
-a plugin for react-native-vision-camera to scan a barcode using zxing
+a plugin for react-native-vision-camera to scan a barcode using zxing. this library also using `vision-camera-plugin-zxing` for scanning on IOS
 ## Installation
 
 ```sh
-npm install vision-camera-zxing-scanner
+yarn add vision-camera-plugin-zxing
+yarn add vision-camera-zxing-scanner
+```
+make sure you correctly setup `react-native-reanimated` and insert as a first line of your `index.tsx`
+
+Add this to your `babel.config.js`
+
+```js
+[
+    'react-native-reanimated/plugin',
+    {
+        globals: ['__detectBarcodes', '__scanBarcodes'],
+    },
+],
 ```
 
 ## Usage
 
 ```js
-import { multiply } from "vision-camera-zxing-scanner";
-
-// ...
-
-const result = await multiply(3, 7);
+const frameProcessor = useFrameProcessor((frame) => {
+    'worklet';
+    const value = scanBarcodes(frame, ['QRCode', 'DataMatrix'], {
+        readByQuadrant: true,
+        readMultiple: true,
+    });
+    runOnJS(setBarcodes)(value);
+}, []);
 ```
 
 ## Contributing
